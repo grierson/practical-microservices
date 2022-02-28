@@ -1,11 +1,12 @@
 {
   "name": "microservices-book",
+  "type": "module",
   "version": "1.0.0",
   "description": "Code for the book",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src migrations",
-    "start-dev-server": "nodemon src/bin/start-server.js --color",
+    "start-dev-server": "nodemon --experimental-json-modules src/bin/start-server.js --color",
     "test": "NODE_ENV=test tape 'src/**/*.test.js'",
     "test:watch": "nodemon --color --exec \"node script/clear-console.js && npm test\""
   },

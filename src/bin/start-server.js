@@ -1,3 +1,3 @@
-const { start } = require("../");
+import { start } from '../index.js'
 
-start();
+start()

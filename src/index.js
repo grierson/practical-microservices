@@ -1,24 +1,24 @@
-const createExpressApp = require("./app/express");
-const createConfig = require("./config");
-const env = require("./env");
+import { createExpressApp } from './app/express/index.js'
+import env from './env.js'
+import { createConfig } from './config.js'
 
-const config = createConfig({ env });
-const app = createExpressApp({ config, env });
+const config = createConfig({ env })
+const app = createExpressApp({ config, env })
 
-function start() {
-  app.listen(env.port, signalAppStart);
+function start () {
+  app.listen(env.port, signalAppStart)
 }
 
-function signalAppStart() {
-  console.log(`${env.appName} started`);
+function signalAppStart () {
+  console.log(`${env.appName} started`)
   console.table([
-    ["Port", env.port],
-    ["Environment", env.env],
-  ]);
+    ['Port', env.port],
+    ['Environment', env.env]
+  ])
 }
 
-module.exports = {
+export {
   app,
   config,
-  start,
-};
+  start
+}

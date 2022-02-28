@@ -1,25 +1,21 @@
-const createKnexClient = require("./knex-client");
-const createHomeApp = require("./app/home");
+import { createKnexClient } from './knex-client.js'
+import { createHome } from './app/home/index.js'
+import { createRecordViewings } from './app/record-viewings/index.js'
 
-// ...
-
-const createRecordViewingsApp = require("./app/record-viewings");
-
-function createConfig({ env }) {
+function createConfig ({ env }) {
   const db = createKnexClient({
-    connectionString: env.databaseUrl,
-  });
-  const homeApp = createHomeApp({ db });
+    connectionString: env.databaseUrl
+  })
+  const homeApp = createHome({ db })
 
-  const recordViewingsApp = createRecordViewingsApp({ db });
+  const recordViewingsApp = createRecordViewings({ db })
 
   return {
     env,
-    // ...
     db,
     homeApp,
-    recordViewingsApp,
-  };
+    recordViewingsApp
+  }
 }
 
-module.exports = createConfig;
+export { createConfig }

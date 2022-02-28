@@ -1,39 +1,38 @@
-const express = require("express");
+import express from 'express'
 
-function createActions({ db }) {
-  function recordViewing(traceId, videoId) {
-    // Return something Promise-based so that the endpoint doesn't crash
-    return Promise.resolve(true);
+function createActions ({ db }) {
+  function recordViewing (traceId, videoId) {
+    return Promise.resolve(true)
   }
 
   return {
-    recordViewing,
-  };
+    recordViewing
+  }
 }
 
-function createHandlers({ actions }) {
-  function handleRecordViewing(req, res) {
+function createHandlers ({ actions }) {
+  function handleRecordViewing (req, res) {
     return actions
       .recordViewing(req.context.traceId, req.params.videoId)
-      .then(() => res.redirect("/"));
+      .then(() => res.redirect('/'))
   }
 
   return {
-    handleRecordViewing,
-  };
+    handleRecordViewing
+  }
 }
 
-function createRecordViewings({ db }) {
+function createRecordViewings ({ db }) {
   const actions = createActions({
-    db,
-  });
-  const handlers = createHandlers({ actions });
+    db
+  })
+  const handlers = createHandlers({ actions })
 
-  const router = express.Router();
+  const router = express.Router()
 
-  router.route("/:videoId").post(handlers.handleRecordViewing);
+  router.route('/:videoId').post(handlers.handleRecordViewing)
 
-  return { actions, handlers, router };
+  return { actions, handlers, router }
 }
 
-module.exports = createRecordViewings;
+export { createRecordViewings }
