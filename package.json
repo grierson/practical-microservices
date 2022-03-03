@@ -1,5 +1,5 @@
 {
-  "name": "microservices-book",
+  "name": "practical-microservices",
   "type": "module",
   "version": "1.0.0",
   "description": "Code for the book",
@@ -10,7 +10,7 @@
     "test": "NODE_ENV=test tape 'src/**/*.test.js'",
     "test:watch": "nodemon --color --exec \"node script/clear-console.js && npm test\""
   },
-  "author": "Ethan Garofolo <ethan@suchsoftware.com>",
+  "author": "Ethan Garofolo <ethan@suchsoftware.com>, Kyle Grierson",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
@@ -41,6 +41,6 @@
     "tape": "^4.8.0"
   },
   "engines": {
-    "node": "12.13.x"
+    "node": "17.6.0"
   }
 }

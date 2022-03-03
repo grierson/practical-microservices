@@ -4,7 +4,11 @@ import { createRecordViewings } from './app/record-viewings/index.js'
 
 function createConfig ({ env }) {
   const db = createKnexClient({
-    connectionString: env.databaseUrl
+    host: env.databaseHost,
+    port: env.databasePort,
+    database: env.databaseName,
+    user: env.databaseUsername,
+    password: env.databasePassword
   })
   const homeApp = createHome({ db })
 

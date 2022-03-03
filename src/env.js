@@ -1,11 +1,10 @@
 import colors from 'colors/safe.js'
 import dotenv from 'dotenv'
-import packageJson from '../package.json'
+import packageJson from '../package.json' assert { type: 'json' };
 
 const envResult = dotenv.config()
 
 if (envResult.error) {
-  // eslint-disable-next-line no-console
   console.error(
     `${colors.red('[ERROR] env failed to load:')} ${envResult.error}`
   )
@@ -26,7 +25,11 @@ function requireFromEnv (key) {
 
 export default {
   appName: requireFromEnv('APP_NAME'),
-  databaseUrl: requireFromEnv('DATABASE_URL'),
+  databaseName: requireFromEnv('DATABASE_NAME'),
+  databaseHost: requireFromEnv('DATABASE_HOST'),
+  databasePort: requireFromEnv('DATABASE_PORT'),
+  databaseUsername: requireFromEnv('DATABASE_USER'),
+  databasePassword: requireFromEnv('DATABASE_PASS'),
   env: requireFromEnv('NODE_ENV'),
   port: parseInt(requireFromEnv('PORT'), 10),
   version: packageJson.version

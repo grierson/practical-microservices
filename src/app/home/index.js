@@ -4,7 +4,7 @@ function createHandlers ({ queries }) {
   function home (req, res, next) {
     return queries
       .loadHomePage()
-      .then((viewData) => res.render('home/templates/home', viewData))
+      .then((viewData) => res.render('home/views/home', viewData))
       .catch(next)
   }
 

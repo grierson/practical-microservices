@@ -1,11 +1,20 @@
 import Bluebird from 'bluebird'
 import knex from 'knex'
 
-function createKnexClient ({ connectionString, migrationsTableName }) {
-  const client = knex(connectionString)
+function createKnexClient ({ user, password, host, port, database }) {
+  const client = knex({
+    client: 'pg',
+    connection: {
+      user: user,
+      password: password,
+      host: host,
+      port: port,
+      database: database
+    }
+  })
 
   const migrationOptions = {
-    tableName: migrationsTableName || 'knex_migrations'
+    tableName: 'knex_migrations'
   }
 
   return Bluebird.resolve(client.migrate.latest(migrationOptions)).then(

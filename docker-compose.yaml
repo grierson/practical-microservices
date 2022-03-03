@@ -1,9 +1,11 @@
-version: '3'
+version: '3.7'
 
 services:
-  practical_microservices_db:
-    image: postgres:10.3
+  database:
+    image: postgres:10.5
     environment:
       - POSTGRES_DB=practical_microservices
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
-      - '0.0.0.0:5432:5432'
+      - '5432:5432'
